@@ -44,5 +44,28 @@ const overlays = {
   "Layer 2": layer2,
   "Layer 3": layer3
 };
-L.control.layers(null, overlays).addTo(map);
+
+
+// Event listeners for custom layer toggles
+document.getElementById('toggleLayer1').addEventListener('change', function(e) {
+  if (e.target.checked) {
+    map.addLayer(layer1);
+  } else {
+    map.removeLayer(layer1);
+  }
+});
+document.getElementById('toggleLayer2').addEventListener('change', function(e) {
+  if (e.target.checked) {
+    map.addLayer(layer2);
+  } else {
+    map.removeLayer(layer2);
+  }
+});
+document.getElementById('toggleLayer3').addEventListener('change', function(e) {
+  if (e.target.checked) {
+    map.addLayer(layer3);
+  } else {
+    map.removeLayer(layer3);
+  }
+});
 
