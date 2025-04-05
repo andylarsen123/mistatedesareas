@@ -1,13 +1,12 @@
 // Initialize the map
-const map = L.map('map').setView([44.5, -85], 6); // Adjust to your region
+const map = L.map('map').setView([44.5, -85], 6); // Center on Michigan
 
-// Add base layer
+// Add base map
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-  maxZoom: 19,
-  attribution: '© OpenStreetMap'
+  attribution: '© OpenStreetMap contributors'
 }).addTo(map);
 
-// Popup display logic
+// Function to add popup to each feature
 function onEachFeature(feature, layer) {
   if (feature.properties) {
     const props = Object.entries(feature.properties)
@@ -17,55 +16,44 @@ function onEachFeature(feature, layer) {
   }
 }
 
-// Create empty layers
-const layer1 = L.geoJSON(null, { onEachFeature });
-const layer2 = L.geoJSON(null, { onEachFeature });
-const layer3 = L.geoJSON(null, { onEachFeature });
+// Define layer variables globally so checkboxes can access them
+let layer1 = L.geoJSON(null, { onEachFeature });
+let layer2 = L.geoJSON(null, { onEachFeature });
+let layer3 = L.geoJSON(null, { onEachFeature });
 
-// Load GeoJSON files
+// Load GeoJSON and add to map + layers
 fetch('data/layer1.geojson')
   .then(res => res.json())
-  .then(data => layer1.addData(data));
+  .then(data => {
+    layer1.addData(data);
+    map.addLayer(layer1); // show by default
+  });
+
 fetch('data/layer2.geojson')
   .then(res => res.json())
-  .then(data => layer2.addData(data));
+  .then(data => {
+    layer2.addData(data);
+    map.addLayer(layer2); // show by default
+  });
+
 fetch('data/layer3.geojson')
   .then(res => res.json())
-  .then(data => layer3.addData(data));
+  .then(data => {
+    layer3.addData(data);
+    map.addLayer(layer3); // show by default
+  });
 
-// Add layers to map by default (optional)
-layer1.addTo(map);
-layer2.addTo(map);
-layer3.addTo(map);
+// Add event listeners for checkboxes after DOM is fully loaded
+document.addEventListener('DOMContentLoaded', () => {
+  document.getElementById('toggleLayer1').addEventListener('change', function () {
+    this.checked ? map.addLayer(layer1) : map.removeLayer(layer1);
+  });
 
-// Add layer toggle control
-const overlays = {
-  "Layer 1": layer1,
-  "Layer 2": layer2,
-  "Layer 3": layer3
-};
+  document.getElementById('toggleLayer2').addEventListener('change', function () {
+    this.checked ? map.addLayer(layer2) : map.removeLayer(layer2);
+  });
 
-
-// Event listeners for custom layer toggles
-document.getElementById('toggleLayer1').addEventListener('change', function(e) {
-  if (e.target.checked) {
-    map.addLayer(layer1);
-  } else {
-    map.removeLayer(layer1);
-  }
+  document.getElementById('toggleLayer3').addEventListener('change', function () {
+    this.checked ? map.addLayer(layer3) : map.removeLayer(layer3);
+  });
 });
-document.getElementById('toggleLayer2').addEventListener('change', function(e) {
-  if (e.target.checked) {
-    map.addLayer(layer2);
-  } else {
-    map.removeLayer(layer2);
-  }
-});
-document.getElementById('toggleLayer3').addEventListener('change', function(e) {
-  if (e.target.checked) {
-    map.addLayer(layer3);
-  } else {
-    map.removeLayer(layer3);
-  }
-});
-
