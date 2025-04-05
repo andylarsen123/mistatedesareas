@@ -5,45 +5,29 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Interactive Map</title>
 
-  <!-- Leaflet CSS (no integrity hash) -->
-  <link
-    rel="stylesheet"
-    href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
-  />
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <div id="map"></div>
 
-  <!-- Custom Layer Legend -->
+  <!-- Legend -->
   <div id="legend" class="legend">
     <h4>Map Layers</h4>
     <label><input type="checkbox" id="toggleLayer1" checked> Layer 1</label><br>
     <label><input type="checkbox" id="toggleLayer2" checked> Layer 2</label><br>
     <label><input type="checkbox" id="toggleLayer3" checked> Layer 3</label>
-  </div>
- 
-  <!-- Leaflet JS (no integrity hash) -->
-  <script
-    src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
-  ></script>
 
-  <!-- Your Map Script -->
+    <div class="legend-note">
+      <p><strong>Tip:</strong> Use the checkboxes to toggle layers on and off.</p>
+    </div>
+  </div>
+
+  <!-- Leaflet JS -->
+  <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
+
+  <!-- Your JS -->
   <script src="script.js"></script>
-
-  <div id="legend" class="legend">
-  <h4>Map Layers</h4>
-  <label><input type="checkbox" id="toggleLayer1" checked> Layer 1</label><br>
-  <label><input type="checkbox" id="toggleLayer2" checked> Layer 2</label><br>
-  <label><input type="checkbox" id="toggleLayer3" checked> Layer 3</label>
-
-  <div class="legend-note">
-    <p><strong>Tip:</strong> Use the checkboxes to toggle layers on and off.</p>
-  </div>
-</div>
-
-
-  
 </body>
 </html>
-
