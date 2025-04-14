@@ -1,10 +1,10 @@
 const map = L.map('map').setView([44.5, -85], 7);
 
 
-L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/">CARTO</a>',
-    subdomains: 'abcd',
-    maxZoom: 19
+L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Reference/MapServer/tile/{z}/{y}/{x}', {
+  attribution: '',
+  subdomains: 'abcd',
+  maxZoom: 19
 }).addTo(map);
 
 const onEachFeature = (feature, layer) => {
