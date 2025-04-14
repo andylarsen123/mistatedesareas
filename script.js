@@ -5,10 +5,6 @@ L.tileLayer('https://stamen-tiles.a.ssl.fastly.net/terrain-background/{z}/{x}/{y
   maxZoom: 18
 }).addTo(map);
 
-  subdomains: 'abcd',
-  maxZoom: 19
-}).addTo(map);
-
 const onEachFeature = (feature, layer) => {
   if (feature.properties) {
     const props = Object.entries(feature.properties)
@@ -57,5 +53,4 @@ document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('toggleLayer3').addEventListener('change', function () {
     this.checked ? map.addLayer(layer3) : map.removeLayer(layer3);
   });
-
 });
