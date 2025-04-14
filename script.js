@@ -1,4 +1,16 @@
-const map = L.map('map').setView([44.5, -85], 6);
+const bounds = [
+  [41.5, -90], // Southwest corner (approx)
+  [48.5, -82]  // Northeast corner (approx)
+];
+
+const map = L.map('map', {
+  center: [44.5, -85],
+  zoom: 6,
+  maxBounds: bounds,
+  maxBoundsViscosity: 1.0,
+  minZoom: 6,
+  maxZoom: 10
+});
 
 L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/">CARTO</a>',
@@ -54,19 +66,5 @@ document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('toggleLayer3').addEventListener('change', function () {
     this.checked ? map.addLayer(layer3) : map.removeLayer(layer3);
   });
-
-const bounds = [
-  [41.5, -90], // Southwest corner (approx)
-  [48.5, -82]  // Northeast corner (approx)
-];
-
-const map = L.map('map', {
-  center: [44.5, -85],
-  zoom: 6,
-  maxBounds: bounds,
-  maxBoundsViscosity: 1.0,
-  minZoom: 6,
-  maxZoom: 10
-});
 
 });
