@@ -1,4 +1,9 @@
-const map = L.map('map').setView([44.5, -85], 7);
+const map = L.map('map', {
+  center: [44.5, -85],
+  zoom: 7,
+  minZoom: 5, // 
+  maxZoom: 19 // 
+});
 
 L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
   attribution: '&copy; OpenStreetMap contributors &copy; <a href="https://carto.com/">CARTO</a>',
