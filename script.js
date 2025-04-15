@@ -83,4 +83,27 @@ document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('toggleLayer3').addEventListener('change', function () {
     this.checked ? map.addLayer(layer3) : map.removeLayer(layer3);
   });
+
+  const legend = L.control({ position: 'bottomright' });
+
+legend.onAdd = function () {
+  const div = L.DomUtil.create('div', 'info legend');
+  const layers = [
+    { name: 'Layer 1', color: '#1f77b4' },
+    { name: 'Layer 2', color: '#ff7f0e' },
+    { name: 'Layer 3', color: '#2ca02c' }
+  ];
+
+  div.innerHTML = layers
+    .map(layer => `
+      <i style="background:${layer.color}; width:18px; height:18px; float:left; margin-right:8px; opacity:0.7;"></i>
+      ${layer.name}<br>
+    `)
+    .join('');
+
+  return div;
+};
+
+legend.addTo(map);
+
 });
