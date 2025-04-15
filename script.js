@@ -69,15 +69,37 @@ fetch('data/layer3.geojson')
     map.addLayer(layer3);
   });
 
-// Add all states in muted gray
-L.geoJSON(usStatesGeoJSON, {
-    style: {
+fetch('data/usstatesgeojson')
+  .then(response => response.json())
+  .then(data => {
+    // Add dimmed states
+    L.geoJSON(data, {
+      style: {
         color: "#999",
         weight: 1,
         fillColor: "#ccc",
         fillOpacity: 0.3
-    }
-}).addTo(map);
+      }
+    }).addTo(map);
+
+    // Filter and highlight Michigan
+    const michiganOnly = {
+      type: "FeatureCollection",
+      features: data.features.filter(
+        f => f.properties.NAME === "Michigan"
+      )
+    };
+
+    L.geoJSON(michiganOnly, {
+      style: {
+        color: "#2a9d8f",
+        weight: 2,
+        fillColor: "#2a9d8f",
+        fillOpacity: 0.5
+      }
+    }).addTo(map);
+  })
+  .catch(err => console.error("Error loading US states GeoJSON:", err));
 
 
 // Checkbox toggles
