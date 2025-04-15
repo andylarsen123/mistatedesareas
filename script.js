@@ -1,8 +1,8 @@
 const map = L.map('map', {
   center: [44.5, -85],
   zoom: 7,
-  minZoom: 6, // 
-  maxZoom: 18 // 
+  minZoom: 6,
+  maxZoom: 18
 });
 
 L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
@@ -10,7 +10,6 @@ L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
   subdomains: 'abcd',
   maxZoom: 19
 }).addTo(map);
-
 
 const onEachFeature = (feature, layer) => {
   if (feature.properties) {
@@ -21,9 +20,33 @@ const onEachFeature = (feature, layer) => {
   }
 };
 
-const layer1 = L.geoJSON(null, { onEachFeature });
-const layer2 = L.geoJSON(null, { onEachFeature });
-const layer3 = L.geoJSON(null, { onEachFeature });
+// Add unique styles for each layer
+const layer1 = L.geoJSON(null, {
+  onEachFeature,
+  style: {
+    color: '#1f77b4', // blue
+    weight: 2,
+    fillOpacity: 0.5
+  }
+});
+
+const layer2 = L.geoJSON(null, {
+  onEachFeature,
+  style: {
+    color: '#ff7f0e', // orange
+    weight: 2,
+    fillOpacity: 0.5
+  }
+});
+
+const layer3 = L.geoJSON(null, {
+  onEachFeature,
+  style: {
+    color: '#2ca02c', // green
+    weight: 2,
+    fillOpacity: 0.5
+  }
+});
 
 // Load and add data
 fetch('data/layer1.geojson')
