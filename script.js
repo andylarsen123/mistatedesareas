@@ -69,37 +69,15 @@ fetch('data/layer3.geojson')
     map.addLayer(layer3);
   });
 
-fetch('https://eric.clst.org/assets/wiki/uploads/Stuff/gz_2010_us_040_00_500k.json')
-  .then(response => response.json())
-  .then(data => {
-    // Add dimmed states
-    L.geoJSON(data, {
-      style: feature => ({
+// Add all states in muted gray
+L.geoJSON(usStatesGeoJSON, {
+    style: {
         color: "#999",
         weight: 1,
         fillColor: "#ccc",
         fillOpacity: 0.3
-      })
-    }).addTo(map);
-
-    // Filter and highlight Michigan
-    const michiganOnly = {
-      type: "FeatureCollection",
-      features: data.features.filter(
-        f => f.properties.NAME === "Michigan"
-      )
-    };
-
-    L.geoJSON(michiganOnly, {
-      style: {
-        color: "#2a9d8f",
-        weight: 2,
-        fillColor: "#2a9d8f",
-        fillOpacity: 0.5
-      }
-    }).addTo(map);
-  });
-
+    }
+}).addTo(map);
 
 
 // Checkbox toggles
