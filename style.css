@@ -39,7 +39,9 @@ body, html {
 
 .legend-note {
   margin-top: 10px;
-  padding: 8px;
+  padding: 0px;
+  padding-left: 10px;
+  padding-right: 10px;
   background: #f5f5f5;
   border-left: 4px solid #888;
   font-size: 0.85rem;
