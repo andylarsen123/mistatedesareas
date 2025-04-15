@@ -20,11 +20,10 @@ const onEachFeature = (feature, layer) => {
   }
 };
 
-// Add unique styles for each layer
 const layer1 = L.geoJSON(null, {
   onEachFeature,
   style: {
-    color: '#1f77b4', // blue
+    color: '#1f77b4', // Blue for CDAs
     weight: 2,
     fillOpacity: 0.5
   }
@@ -33,7 +32,7 @@ const layer1 = L.geoJSON(null, {
 const layer2 = L.geoJSON(null, {
   onEachFeature,
   style: {
-    color: '#ff7f0e', // orange
+    color: '#2ca02c', // Green for EAs
     weight: 2,
     fillOpacity: 0.5
   }
@@ -42,7 +41,7 @@ const layer2 = L.geoJSON(null, {
 const layer3 = L.geoJSON(null, {
   onEachFeature,
   style: {
-    color: '#2ca02c', // green
+    color: '#d62728', // Red for HREAs
     weight: 2,
     fillOpacity: 0.5
   }
@@ -70,7 +69,7 @@ fetch('data/layer3.geojson')
     map.addLayer(layer3);
   });
 
-// Toggle checkboxes
+// Checkbox toggles
 document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('toggleLayer1').addEventListener('change', function () {
     this.checked ? map.addLayer(layer1) : map.removeLayer(layer1);
@@ -83,27 +82,4 @@ document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('toggleLayer3').addEventListener('change', function () {
     this.checked ? map.addLayer(layer3) : map.removeLayer(layer3);
   });
-
-  const legend = L.control({ position: 'bottomright' });
-
-legend.onAdd = function () {
-  const div = L.DomUtil.create('div', 'info legend');
-  const layers = [
-    { name: 'Layer 1', color: '#1f77b4' },
-    { name: 'Layer 2', color: '#ff7f0e' },
-    { name: 'Layer 3', color: '#2ca02c' }
-  ];
-
-  div.innerHTML = layers
-    .map(layer => `
-      <i style="background:${layer.color}; width:18px; height:18px; float:left; margin-right:8px; opacity:0.7;"></i>
-      ${layer.name}<br>
-    `)
-    .join('');
-
-  return div;
-};
-
-legend.addTo(map);
-
 });
