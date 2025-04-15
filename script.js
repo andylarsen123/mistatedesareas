@@ -69,6 +69,19 @@ fetch('data/layer3.geojson')
     map.addLayer(layer3);
   });
 
+fetch('data/countriesgeojson')
+  .then(response => response.json())
+  .then(data => {
+    // Add dimmed states
+    L.geoJSON(data, {
+      style: {
+        color: "#999",
+        weight: 1,
+        fillColor: "#ccc",
+        fillOpacity: 0.8
+      }
+    }).addTo(map);
+
 fetch('data/usstatesgeojson')
   .then(response => response.json())
   .then(data => {
