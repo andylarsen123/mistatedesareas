@@ -78,26 +78,9 @@ fetch('data/usstatesgeojson')
         color: "#999",
         weight: 1,
         fillColor: "#ccc",
-        fillOpacity: 0.3
+        fillOpacity: 0.8
       }
     }).addTo(map);
-
-    const michiganOnly = {
-      type: "FeatureCollection",
-      features: data.features.filter(
-        f => f.properties.name === "Michigan"
-      )
-    };
-    
-    L.geoJSON(michiganOnly, {
-      style: {
-        color: "#2a9d8f",
-        weight: 2,
-        fillColor: "#2a9d8f",
-        fillOpacity: 0.5
-      }
-    }).addTo(map);
-  })
   .catch(err => console.error("Error loading US states GeoJSON:", err));
 
 
