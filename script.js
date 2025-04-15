@@ -11,9 +11,6 @@ L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
   maxZoom: 19
 }).addTo(map);
 
-L.Control.geocoder({
-  defaultMarkGeocode: true
-}).addTo(map);
 
 const onEachFeature = (feature, layer) => {
   if (feature.properties) {
