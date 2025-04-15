@@ -20,6 +20,17 @@ body, html {
   font-family: sans-serif;
   font-size: 14px;
   z-index: 1000;
+  line-height: 22px;
+  color: #333;
+}
+
+.legend label {
+  display: block;
+  margin-bottom: 6px;
+}
+
+.legend input[type="checkbox"] {
+  margin-right: 6px;
 }
 
 .legend-note {
@@ -30,13 +41,4 @@ body, html {
   font-size: 0.85rem;
   color: #333;
   border-radius: 4px;
-}
-
-style: function (feature) {
-  return {
-    fillColor: '#3182bd',
-    weight: 1,
-    opacity: 1,
-    color: '#08519c',
-    fillOpacity: 0.4
 }
