@@ -72,7 +72,7 @@ fetch('data/layer3.geojson')
 fetch('data/countriesgeojson')
   .then(response => response.json())
   .then(data => {
-    // Add dimmed states
+    // Add dimmed countries (or states, if that's intended)
     L.geoJSON(data, {
       style: {
         color: "#999",
@@ -81,6 +81,8 @@ fetch('data/countriesgeojson')
         fillOpacity: 0.8
       }
     }).addTo(map);
+  })
+  .catch(err => console.error("Error loading countries GeoJSON:", err));  // Close first fetch properly
 
 fetch('data/usstatesgeojson')
   .then(response => response.json())
@@ -95,13 +97,14 @@ fetch('data/usstatesgeojson')
       }
     }).addTo(map);
 
+    // Filter and highlight Michigan
     const michiganOnly = {
       type: "FeatureCollection",
       features: data.features.filter(
         f => f.properties.name === "Michigan"
       )
     };
-    
+
     L.geoJSON(michiganOnly, {
       style: {
         color: "#2a9d8f",
@@ -112,6 +115,7 @@ fetch('data/usstatesgeojson')
     }).addTo(map);
   })
   .catch(err => console.error("Error loading US states GeoJSON:", err));
+
 
 
 // Checkbox toggles
