@@ -6,7 +6,7 @@ const map = L.map('map', {
 });
 
 L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
-  attribution: '&copy; OpenStreetMap contributors &copy; <a href="https://carto.com/">CARTO</a> <a href="https://gis-egle.hub.arcgis.com/">EGLE Maps and Data</a>',
+  attribution: '&copy; OpenStreetMap contributors | &copy; <a href="https://carto.com/">CARTO</a> | <a href="https://gis-egle.hub.arcgis.com/">EGLE Maps and Data</a>',
   subdomains: 'abcd',
   maxZoom: 19
 }).addTo(map);
