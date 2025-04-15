@@ -81,8 +81,6 @@ fetch('data/usstatesgeojson')
         fillOpacity: 0.8
       }
     }).addTo(map);
-  .catch(err => console.error("Error loading US states GeoJSON:", err));
-
 
 // Checkbox toggles
 document.addEventListener('DOMContentLoaded', () => {
