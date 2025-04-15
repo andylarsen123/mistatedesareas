@@ -23,6 +23,7 @@ body, html {
   z-index: 1000;
   line-height: 22px;
   color: #333;
+  padding-top: 0px;
 }
 
 .legend label {
