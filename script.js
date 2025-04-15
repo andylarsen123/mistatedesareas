@@ -82,6 +82,25 @@ fetch('data/usstatesgeojson')
       }
     }).addTo(map);
 
+    const michiganOnly = {
+      type: "FeatureCollection",
+      features: data.features.filter(
+        f => f.properties.name === "Michigan"
+      )
+    };
+    
+    L.geoJSON(michiganOnly, {
+      style: {
+        color: "#2a9d8f",
+        weight: 0,
+        fillColor: "#2a9d8f",
+        fillOpacity: 0.0
+      }
+    }).addTo(map);
+  })
+  .catch(err => console.error("Error loading US states GeoJSON:", err));
+
+
 // Checkbox toggles
 document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('toggleLayer1').addEventListener('change', function () {
