@@ -82,14 +82,13 @@ fetch('data/usstatesgeojson')
       }
     }).addTo(map);
 
-    // Filter and highlight Michigan
     const michiganOnly = {
       type: "FeatureCollection",
       features: data.features.filter(
-        f => f.properties.NAME === "Michigan"
+        f => f.properties.name === "Michigan"
       )
     };
-
+    
     L.geoJSON(michiganOnly, {
       style: {
         color: "#2a9d8f",
